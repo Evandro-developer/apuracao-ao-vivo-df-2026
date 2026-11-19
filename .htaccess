@@ -1,0 +1,9 @@
+# /apuracao — a apuração ao vivo (04/10/2026). A política de segurança do site principal (connect-src 'self')
+# impede o navegador de ler o TSE. Aqui ela é a mesma, com só três liberações nomeadas:
+#   connect-src: https://resultados.tse.jus.br (os arquivos públicos da apuração)
+#   style-src / font-src: as fontes do Google (Plus Jakarta Sans)
+#   media-src 'self' (os vídeos da SWM nesta pasta)
+<IfModule mod_headers.c>
+  Header always set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://resultados.tse.jus.br; media-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests"
+  Header set Content-Security-Policy "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data:; font-src 'self' https://fonts.gstatic.com; connect-src 'self' https://resultados.tse.jus.br; media-src 'self'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'; upgrade-insecure-requests"
+</IfModule>

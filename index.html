@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Apuração ao vivo · DF 2026 · Scale Web Media</title>
+<meta name="description" content="Apuração ao vivo do Distrito Federal, 04/10/2026: governador, senado, presidente no DF e as cadeiras de deputado distrital e federal se a apuração terminasse agora. Fonte: TSE.">
+<meta name="theme-color" content="#0b0f19">
+<link rel="icon" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta property="og:title" content="Apuração ao vivo · DF 2026 · Scale Web Media">
+<meta property="og:description" content="Direto dos arquivos do TSE, a cada 30 segundos. E como o voto vira cadeira.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://apuracao.scalewebmedia.com/">
+<meta property="og:image" content="https://scalewebmedia.com/apuracao/anuncios/og_apuracao_1200x630.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" media="print" onload="this.media='all'">
+<link rel="stylesheet" href="estilo.css?v=20261119s6">
+<link rel="stylesheet" href="mod_partidos/partidos.css?v=20261119s6">
+<script src="mod_partidos/partidos.js?v=20261119s6" defer></script>
+<link rel="stylesheet" href="mod_graficos/graficos.css?v=20261119s6">
+<script src="mod_graficos/graficos.js?v=20261119s6" defer></script>
+</head>
+<body>
+
+<header class="marca" role="banner">
+  <div class="marca__txt">
+    <span class="aovivo"><i class="pulso" aria-hidden="true"></i>Apuração ao vivo</span>
+    <span class="sep" aria-hidden="true">·</span>
+    <strong class="marca__nome">Scale Web Media</strong>
+    <span class="sep sep--larga" aria-hidden="true">·</span>
+    <span class="marca__slogan">inteligência eleitoral e de dados para campanhas e empresas</span>
+  </div>
+  <div class="marca__acoes">
+    <span class="sociais" id="sociaisTopo" aria-label="Siga a SWM"></span>
+    <a class="marca__cta" id="cta" href="/" rel="noopener">Fale com a SWM</a>
+  </div>
+</header>
+
+<main id="topo">
+  
+  <section class="status card" aria-live="polite">
+    <div class="status__linha">
+      <h1 class="status__titulo">Eleições 2026 · Distrito Federal</h1>
+      <span class="fonte-espelho" id="fonteEspelho" hidden>fonte: espelho SWM</span>
+    </div>
+    <div class="status__grande">
+      <div class="status__pct">
+        <span class="num" id="pctSecoes">0,00</span><span class="pct-sinal">%</span>
+      </div>
+      <div class="status__rotulo">
+        <span id="pctRotulo">das seções apuradas</span>
+        <span class="status__secoes" id="secoes"></span>
+      </div>
+    </div>
+    <div class="barra-apur" aria-hidden="true"><div class="barra-apur__fill" id="barraApur"></div></div>
+    <p class="aguardando" id="aguardando" hidden></p>
+    <div class="status__votos" id="statusVotos" aria-label="Comparecimento, abstenção, brancos e nulos"></div>
+    <div class="status__meta">
+      <span>Hora do TSE: <b id="horaTSE">—</b></span>
+      <span class="atualizado"><i class="pulso pulso--peq" aria-hidden="true"></i><span id="atualizadoHa">consultando o TSE…</span></span>
+    </div>
+  </section>
+
+  <section class="majoritarios" aria-labelledby="tMaj">
+    <h2 id="tMaj" class="sec-titulo">Quem lidera, cargo a cargo</h2>
+    <div class="abas" role="tablist" id="abasMaj">
+      <button role="tab" aria-selected="true" data-alvo="gov">Governador</button>
+      <button role="tab" aria-selected="false" data-alvo="sen">Senado</button>
+      <button role="tab" aria-selected="false" data-alvo="pres">Presidente no DF</button>
+    </div>
+    <div class="maj-grade">
+      <article class="card maj ativo" id="maj-gov" data-cargo="gov">
+        <header class="maj__cab"><h3>Governador</h3><span class="maj__info" data-info></span></header>
+        <p class="maj__nota">Mais de 50% dos votos válidos elegem no 1º turno. Percentuais sobre os votos válidos.</p>
+        <div class="selo-turno" id="seloTurno" hidden></div>
+        <ol class="maj__lista" data-lista></ol>
+      </article>
+      <article class="card maj" id="maj-sen" data-cargo="sen">
+        <header class="maj__cab"><h3>Senado</h3><span class="maj__info" data-info></span></header>
+        <p class="maj__nota" data-nota-sen>Duas vagas: as duas mais votadas se elegem.</p>
+        <ol class="maj__lista" data-lista></ol>
+      </article>
+      <article class="card maj" id="maj-pres" data-cargo="pres">
+        <header class="maj__cab"><h3>Presidente <small>votos no DF</small></h3><span class="maj__info" data-info></span></header>
+        <p class="maj__nota">Só os votos do Distrito Federal; o resultado nacional é outro.</p>
+        <ol class="maj__lista" data-lista></ol>
+      </article>
+    </div>
+  </section>
+
+  <section class="busca card" id="busca" aria-labelledby="tBusca">
+    <h2 id="tBusca" class="sec-titulo">Pesquise seu candidato</h2>
+    <div class="busca__campo">
+      <input type="search" id="buscaInput" placeholder="Nome de urna ou número" autocomplete="off" aria-label="Nome de urna ou número do candidato">
+    </div>
+    <ul class="busca__res" id="buscaRes" hidden></ul>
+    <div class="cartao" id="cartao" hidden aria-live="polite"></div>
+  </section>
+
+  <section class="prop" aria-labelledby="tProp">
+    <div class="prop__cab">
+      <h2 id="tProp" class="sec-titulo">As cadeiras, se a apuração terminasse agora</h2>
+      <div class="abas abas--prop" role="tablist" id="abasProp">
+        <button role="tab" aria-selected="true" data-prop="dist">Distrital <small>24</small></button>
+        <button role="tab" aria-selected="false" data-prop="fed">Federal <small>8</small></button>
+      </div>
+    </div>
+
+    <div class="prop-grade">
+      <article class="card hemi-card">
+        <header class="hemi__cab">
+          <h3 id="hemiTitulo">Câmara Legislativa do DF</h3>
+          <span class="selo-parcial">se terminasse agora</span>
+        </header>
+        <div class="hemi" id="hemi">
+          <svg viewBox="0 0 230 128" id="hemiSvg" role="img" aria-label="Cadeiras por agremiação se a apuração terminasse agora"></svg>
+          <div class="hemi__centro"><span class="num" id="hemiVagas">24</span><small>cadeiras</small></div>
+        </div>
+        <p class="hemi__qe" id="hemiQE"></p>
+        <ul class="legenda" id="legenda"></ul>
+      </article>
+
+      <article class="card explica" id="explica" aria-labelledby="tExplica">
+        <header class="explica__cab">
+          <div>
+            <h3 id="tExplica">Como o voto vira cadeira</h3>
+            <p class="explica__sub" id="explicaSub">a conta do quociente, passo a passo</p>
+          </div>
+          <button class="btn-rever" id="btnRever" type="button" aria-label="Rever a animação">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5V2L7 6l5 4V7a5 5 0 1 1-5 5H5a7 7 0 1 0 7-7z"/></svg>Rever
+          </button>
+        </header>
+        <ol class="passos" id="passosNav" aria-label="Etapas">
+          <li><button data-cena="0">Votos válidos</button></li>
+          <li><button data-cena="1">Quociente eleitoral</button></li>
+          <li><button data-cena="2">Quociente partidário</button></li>
+          <li><button data-cena="3">Sobras</button></li>
+          <li><button data-cena="4">Quem senta</button></li>
+        </ol>
+        <div class="palco" id="palco" aria-live="polite">
+          <span class="selo-exemplo" id="seloExemplo" hidden>Exemplo didático · números fictícios</span>
+          <div class="palco__cena" id="cena"></div>
+        </div>
+        <p class="legenda-cena" id="legendaCena"></p>
+        <div class="palco__tempo" aria-hidden="true"><div id="tempoCena"></div></div>
+      </article>
+    </div>
+
+    <article class="card fronteira-card" id="fronteiraCard">
+      <header class="eleitos__cab">
+        <h3>A fronteira, se terminasse agora</h3>
+        <span class="eleitos__nota">O último a entrar e o primeiro de fora. A vaga não passa direto de um ao outro: cada agremiação preenche as suas cadeiras pela própria lista.</span>
+      </header>
+      <div id="fronteira"></div>
+      <details class="fronteira__ags" id="fronteiraAgsBox">
+        <summary>Por agremiação: a fronteira da lista e os votos que faltam para a próxima cadeira</summary>
+        <div id="fronteiraAgs"></div>
+      </details>
+    </article>
+
+    <article class="card mudancas-card" id="mudancasCard">
+      <header class="eleitos__cab">
+        <h3>Últimas mudanças</h3>
+        <span class="eleitos__nota">Quem entrou e quem saiu da lista dos eleitos se terminasse agora, com a hora do TSE.</span>
+      </header>
+      <ol class="mudancas" id="mudancas"><li class="vazio">Nenhuma mudança desde que você abriu a página.</li></ol>
+    </article>
+
+    <article class="card eleitos-card">
+      <header class="eleitos__cab">
+        <h3 id="eleitosTitulo">Eleitos se a apuração terminasse agora</h3>
+        <span class="eleitos__nota">Ordem: agremiação, depois votos. QP = pelo quociente partidário; média = pelas sobras.</span>
+      </header>
+      <ol class="eleitos" id="eleitos"></ol>
+    </article>
+  </section>
+
+  <section class="conheca card" id="conheca" hidden aria-labelledby="tConheca">
+    <h2 id="tConheca" class="sec-titulo">Conheça a SWM</h2>
+    <div class="conheca__frases">
+      <p><b>SWM Eleitoral</b> · inteligência eleitoral: os dados do TSE por seção e por local de votação, e o tracking da campanha.</p>
+      <p><b>SWM Empresarial</b> · inteligência de dados para empresas.</p>
+    </div>
+    <div class="conheca__videos" id="conhecaVideos"></div>
+  </section>
+
+  <section class="compartilha card" aria-label="Compartilhar">
+    <span class="compartilha__txt">Compartilhe a apuração ao vivo</span>
+    <div class="botoes-comp" id="compPagina"></div>
+  </section>
+
+</main>
+
+<div class="aviso" id="aviso" aria-live="assertive" hidden></div>
+
+<footer class="rodape">
+  <p><b>Fonte: TSE (resultados.tse.jus.br). Parcial; o resultado oficial é o do TSE.</b></p>
+  <p>Leitura direta dos arquivos públicos do TSE a cada 30 segundos. Nenhum número desta página é estimado: o que o TSE ainda não publicou aparece como “—”.</p>
+  <p class="rodape__marca">Scale Web Media · <i>Cognoscere, non opinari</i></p>
+  <p class="sociais sociais--rodape" id="sociaisRodape" aria-label="Siga a SWM"></p>
+  <p class="rodape__tec" id="rodapeTec"></p>
+</footer>
+
+<script>
+/* Carrega o motor oficial (./motor.js); se não existir ou não expuser
+   window.SWMMotor, carrega o stub de desenvolvimento. ?motor=stub força o stub. */
+(function () {
+  var q = new URLSearchParams(location.search);
+  function carrega(src, ok, erro) {
+    var s = document.createElement('script');
+    s.src = src; s.onload = ok; s.onerror = erro || ok;
+    document.body.appendChild(s);
+  }
+  function app() { carrega('animacao.js?v=20261119s6', function () { carrega('app.js?v=20261119s6'); }); }
+  function stub() { carrega('motor_stub.js?v=20261119s6', app); }
+  if (q.get('motor') === 'stub') { stub(); return; }
+  carrega('motor.js?v=20261119s6', function () { if (window.SWMMotor && window.SWMMotor.le) app(); else stub(); }, stub);
+})();
+</script>
+</body>
+</html>
