@@ -1,0 +1,24 @@
+{
+ "fonte": "TSE · resultados.tse.jus.br · eleição 6260 (2º turno) · df-c0003-e006260-u.json",
+ "sha256": "362a011c437b2120b66f96314703a2c803eaac81a0ed075790bea1cc4989b901",
+ "data": "25/10/2026",
+ "hora": "21:28:09",
+ "totalizado": true,
+ "validos": 1726272,
+ "candidatos": [
+  {
+   "n": "11",
+   "urna": "CELINA LEÃO",
+   "votos": 987142,
+   "pct": 57.183456605,
+   "situacao": "Eleito"
+  },
+  {
+   "n": "13",
+   "urna": "LEANDRO GRASS",
+   "votos": 739130,
+   "pct": 42.816543395,
+   "situacao": "Não eleito"
+  }
+ ]
+}
